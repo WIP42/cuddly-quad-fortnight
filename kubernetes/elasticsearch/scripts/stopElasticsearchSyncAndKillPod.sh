@@ -16,7 +16,7 @@ for POD in `kubectl get pods|grep elasticsearch|awk '{print $1}'`;do
 
   #echo "Press Ctrl-C to stop port forwarding from $POD"
   #fg;
-  kill %1;
+  kill -9 "$(pgrep -f "port-forward $POD 9200:9200")";
 
   echo "Sleeping for 60 seconds before killing pod: '$POD'";echo '';
   sleep 60;
